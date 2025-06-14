@@ -1,0 +1,55 @@
+﻿@page
+@model Zakladnik.Pages.Zaklady.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Zaklad</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Zaklad.Data)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Zaklad.Data)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Zaklad.Bukmacher)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Zaklad.Bukmacher)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Zaklad.Stawka)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Zaklad.Stawka)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Zaklad.Kurs)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Zaklad.Kurs)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Zaklad.Wygrany)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Zaklad.Wygrany)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Zaklad.Podatek)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Zaklad.Podatek)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Zaklad.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

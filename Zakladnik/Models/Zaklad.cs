@@ -21,6 +21,15 @@ namespace Zakladnik.Models
 
         public bool Wygrany { get; set; }
 
-        public decimal PotencjalnaWygrana => Math.Round(Stawka * Kurs, 2);
+        [Range(0, 100)]
+        [Display(Name = "Podatek (%)")]
+        public decimal Podatek { get; set; } = 12;
+
+        [Display(Name = "Potencjalna wygrana")]
+        public decimal PotencjalnaWygrana =>
+            Math.Round((Stawka - (Stawka * Podatek / 100)) * Kurs, 2);
+
+        [Display(Name = "Faktyczna wygrana")]
+        public decimal FaktycznaWygrana => Wygrany ? PotencjalnaWygrana : 0;
     }
 }

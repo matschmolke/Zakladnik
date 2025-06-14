@@ -1,5 +1,7 @@
 using Zakladnik.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+
 
 namespace Zakladnik
 {
@@ -29,6 +31,10 @@ namespace Zakladnik
             app.MapStaticAssets();
             app.MapRazorPages()
                .WithStaticAssets();
+
+            var culture = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
 
             app.Run();
         }

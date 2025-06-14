@@ -1,0 +1,61 @@
+﻿@page
+@model Zakladnik.Pages.Zaklady.CreateModel
+
+        @{
+        ViewData["Title"] = "Create";
+        }
+        
+        <h1>Tworzenie zakładu</h1>
+    <hr />
+    <div class="row">
+    <div class="col-md-4">
+    <form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Zaklad.Data" class="control-label"></label>
+                <input asp-for="Zaklad.Data" class="form-control" />
+                <span asp-validation-for="Zaklad.Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Zaklad.Bukmacher" class="control-label"></label>
+                <input asp-for="Zaklad.Bukmacher" class="form-control" />
+                <span asp-validation-for="Zaklad.Bukmacher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Zaklad.Stawka" class="control-label"></label>
+                <input asp-for="Zaklad.Stawka" class="form-control" />
+                <span asp-validation-for="Zaklad.Stawka" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Zaklad.Kurs" class="control-label"></label>
+                <input asp-for="Zaklad.Kurs" class="form-control" />
+                <span asp-validation-for="Zaklad.Kurs" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Zaklad.Wygrany" /> @Html.DisplayNameFor(model => model.Zaklad.Wygrany)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Zaklad.Podatek" class="control-label"></label>
+                <input asp-for="Zaklad.Podatek" class="form-control" />
+                <span asp-validation-for="Zaklad.Podatek" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
