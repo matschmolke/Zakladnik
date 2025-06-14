@@ -5,9 +5,8 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Edycja zakładu</h1>
 
-<h4>Zaklad</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -51,14 +50,14 @@
                 <span asp-validation-for="Zaklad.Podatek" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">Powrót do listy zakładów</a>
 </div>
 
 @section Scripts {
