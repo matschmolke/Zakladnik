@@ -4,6 +4,61 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Witaj w aplikacji Zakladnik</h1>
+<h2>📊 Panel – Statystyki typowania</h2>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card p-3 mb-3 shadow-sm rounded text-center border-primary">
+            <h5>🎯 Liczba zakładów</h5>
+            <p class="fs-4">@Model.LiczbaZakladow</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-3 mb-3 shadow-sm rounded text-center border-primary">
+            <h5>💸 Łącznie postawiono</h5>
+            <p class="fs-4">@Model.LacznaStawka zł</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-3 mb-3 shadow-sm rounded text-center border-primary">
+            <h5>🏆 Łącznie wygrano</h5>
+            <p class="fs-4">@Model.LacznaWygrana zł</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card p-3 mb-3 shadow-sm rounded text-center border-primary">
+            <h5>📈 Bilans</h5>
+            <p class="fs-4 @(Model.Bilans >= 0 ? "text-success" : "text-danger")">
+                @Model.Bilans zł
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card p-3 mb-3 shadow-sm rounded text-center border-primary">
+            <h5>🎯 Skuteczność</h5>
+            <p class="fs-4">@Model.Skutecznosc %</p>
+        </div>
+    </div>
+</div>
+
+<div class="alert mt-4 text-center 
+    @(Model.Bilans >= 0 ? "alert-success" : "alert-danger")" role="alert">
+
+    @if (Model.Bilans >= 0)
+    {
+        <p><strong>💸 Grasz jak zawodowiec!</strong> Twój bilans jest dodatni.</p>
+    }
+    else
+    {
+        <p><strong>🥴 Jesteś na minusie...</strong>"Może czas zająć się pracą?"</p>
+    }
+</div>
+
+<div class="mt-4">
+    <a class="btn btn-outline-primary btn-lg" asp-page="/Zaklady/Index">
+        ➡️ Przejdź do listy zakładów
+    </a>
 </div>

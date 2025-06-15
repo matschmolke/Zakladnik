@@ -13,6 +13,7 @@ namespace Zakladnik.Pages.Zaklady
     public class IndexModel : PageModel
     {
         private readonly Zakladnik.Data.AppDbContext _context;
+        public decimal Bilans { get; set; }
 
         public IndexModel(Zakladnik.Data.AppDbContext context)
         {
@@ -24,6 +25,7 @@ namespace Zakladnik.Pages.Zaklady
         public async Task OnGetAsync()
         {
             Zaklad = await _context.Zaklady.ToListAsync();
+            Bilans = Zaklad.Sum(z => z.FaktycznaWygrana - z.Stawka);
         }
     }
 }

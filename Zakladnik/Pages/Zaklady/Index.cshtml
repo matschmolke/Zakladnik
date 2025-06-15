@@ -7,10 +7,11 @@
 
 <h1>Lista zakładów</h1>
 
+<hr />
 <p>
-    <a asp-page="Create">Utwórz nowy zakład</a>
+    <a class="btn btn-info" asp-page="Create">Dodaj nowy zakład</a>
 </p>
-<table class="table">
+<table class="table table-striped table-hover table-bordered">
     <thead>
         <tr>
             <th>
@@ -64,9 +65,9 @@
                 @item.FaktycznaWygrana
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edytuj</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Sczegóły</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Usuń</a>
+                <a class="btn btn-sm btn-info" asp-page="./Edit" asp-route-id="@item.Id">Edytuj</a>
+                <!-- usunięto link do szczegółów -->
+                <a class="btn btn-sm btn-danger" asp-page="./Delete" asp-route-id="@item.Id">Usuń</a>
             </td>
         </tr>
 }
