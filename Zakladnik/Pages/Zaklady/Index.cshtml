@@ -12,6 +12,29 @@
     <a class="btn btn-info" asp-page="Create">Dodaj nowy zakład</a>
 </p>
 
+<hr />
+<form method="get" class="row g-2 mb-4">
+    <div class="col-md-4">
+        <input name="filtrBukmacher" value="@Model.FiltrBukmacher" class="form-control" placeholder="Szukaj bukmachera..." />
+    </div>
+    <div class="col-md-4">
+        <select name="filtrStatus" class="form-select">
+            <option value="">-- Wszystkie --</option>
+            <option value="Wygrany" selected="@(Model.FiltrStatus == "Wygrany")">Wygrane</option>
+            <option value="Przegrany" selected="@(Model.FiltrStatus == "Przegrany")">Przegrane</option>
+            <option value="Nierozliczony" selected="@(Model.FiltrStatus == "Nierozliczony")">Nierozliczone</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-info">Filtruj</button>
+        <a asp-page="./Index" class="btn btn-secondary ms-2">Wyczyść</a>
+    </div>
+</form>
+
+<div class="alert @(Model.Bilans >= 0 ? "alert-success" : "alert-danger")">
+    <strong>Bilans:</strong> @Model.Bilans.ToString("0.00") zł
+</div>
+
 <table class="table table-striped table-hover table-bordered">
     <thead>
         <tr>

@@ -39,5 +39,6 @@ namespace Zakladnik.Models
 
         [Display(Name = "Faktyczna wygrana")]
         public decimal FaktycznaWygrana => Wygrany ? PotencjalnaWygrana : 0;
+
     }
 }

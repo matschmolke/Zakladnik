@@ -14,6 +14,8 @@ namespace Zakladnik.Pages.Zaklady
     {
         private readonly Zakladnik.Data.AppDbContext _context;
         public decimal Bilans { get; set; }
+        public string? FiltrBukmacher { get; set; }
+        public string? FiltrStatus { get; set; }
 
         public IndexModel(Zakladnik.Data.AppDbContext context)
         {
@@ -22,9 +24,29 @@ namespace Zakladnik.Pages.Zaklady
 
         public IList<Zaklad> Zaklad { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string? filtrBukmacher, string? filtrStatus)
         {
-            Zaklad = await _context.Zaklady.ToListAsync();
+            FiltrBukmacher = filtrBukmacher;
+            FiltrStatus = filtrStatus;
+
+            var query = _context.Zaklady.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(FiltrBukmacher))
+            {
+                query = query.Where(z => z.Bukmacher.Contains(FiltrBukmacher));
+            }
+
+            if (!string.IsNullOrWhiteSpace(FiltrStatus))
+            {
+                if (FiltrStatus == "Wygrany")
+                    query = query.Where(z => z.Rozliczony && z.Wygrany);
+                else if (FiltrStatus == "Przegrany")
+                    query = query.Where(z => z.Rozliczony && !z.Wygrany);
+                else if (FiltrStatus == "Nierozliczony")
+                    query = query.Where(z => !z.Rozliczony);
+            }
+
+            Zaklad = await query.ToListAsync();
             Bilans = Zaklad.Sum(z => z.FaktycznaWygrana - z.Stawka);
         }
     }
