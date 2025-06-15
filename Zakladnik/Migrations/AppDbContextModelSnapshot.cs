@@ -44,6 +44,9 @@ namespace Zakladnik.Migrations
                     b.Property<decimal>("Podatek")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<bool>("Rozliczony")
+                        .HasColumnType("bit");
+
                     b.Property<decimal>("Stawka")
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");

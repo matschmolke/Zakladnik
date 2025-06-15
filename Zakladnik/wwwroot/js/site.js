@@ -1,4 +1,25 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    const wygranyCheckbox = document.querySelector("#Zaklad_Wygrany");
+    const rozliczonyCheckbox = document.querySelector("#Zaklad_Rozliczony");
 
-// Write your JavaScript code.
+    if (!form || !wygranyCheckbox || !rozliczonyCheckbox) return;
+
+    rozliczonyCheckbox.addEventListener("change", function () {
+        if (!this.checked) {
+            wygranyCheckbox.checked = false;
+            wygranyCheckbox.disabled = true;
+            wygranyLabel.classList.add("disabled-checkbox");
+        } else {
+            wygranyCheckbox.disabled = false;
+            wygranyLabel.classList.remove("disabled-checkbox");
+        }
+    });
+
+    form.addEventListener("submit", function (e) {
+        if (!rozliczonyCheckbox.checked && wygranyCheckbox.checked) {
+            e.preventDefault();
+            alert("Nie można zaznaczyć zakładu jako wygranego, jeśli nie jest rozliczony.");
+        }
+    });
+});

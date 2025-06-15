@@ -11,6 +11,7 @@
 <p>
     <a class="btn btn-info" asp-page="Create">Dodaj nowy zakład</a>
 </p>
+
 <table class="table table-striped table-hover table-bordered">
     <thead>
         <tr>
@@ -41,7 +42,7 @@
 @foreach (var item in Model.Zaklad) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Data)
+                 @item.Data.ToString("dd.MM.yyyy HH:mm")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Bukmacher)
@@ -53,7 +54,18 @@
                 @Html.DisplayFor(modelItem => item.Kurs)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Wygrany)
+                @if (!item.Rozliczony)
+                {
+                    <span class="badge bg-secondary">Oczekuje ⏳</span>
+                }
+                else if (item.Wygrany)
+                {
+                    <span class="badge bg-success">Wygrany ✅</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Przegrany ❌</span>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Podatek)

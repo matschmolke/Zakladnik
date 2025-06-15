@@ -21,7 +21,9 @@ namespace Zakladnik.Migrations
                     Bukmacher = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Stawka = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
                     Kurs = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    Wygrany = table.Column<bool>(type: "bit", nullable: false)
+                    Wygrany = table.Column<bool>(type: "bit", nullable: false),
+                    Rozliczony = table.Column<bool>(type: "bit", nullable: false),
+                    Podatek = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {

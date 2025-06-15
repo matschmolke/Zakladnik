@@ -1,0 +1,16 @@
+﻿@page
+@model Zakladnik.Pages.ResetModel
+@{
+    ViewData["Title"] = "Reset danych";
+}
+
+<h2>Reset danych</h2>
+
+<div class="alert alert-warning">
+    Czy na pewno chcesz usunąć <strong>wszystkie zakłady</strong>? Tej operacji nie można cofnąć.
+</div>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Tak, usuń wszystko</button>
+    <a asp-page="/Index" class="btn btn-secondary ms-2">Anuluj</a>
+</form>

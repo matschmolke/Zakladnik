@@ -12,7 +12,7 @@ using Zakladnik.Data;
 namespace Zakladnik.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250612193407_InitialCreate")]
+    [Migration("20250615185239_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -43,6 +43,12 @@ namespace Zakladnik.Migrations
                     b.Property<decimal>("Kurs")
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("Podatek")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("Rozliczony")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("Stawka")
                         .HasPrecision(10, 2)

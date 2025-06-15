@@ -13,6 +13,8 @@ namespace Zakladnik.Pages.Zaklady
     public class CreateModel : PageModel
     {
         private readonly Zakladnik.Data.AppDbContext _context;
+        public List<SelectListItem> Bukmacherzy { get; set; }
+
 
         public CreateModel(Zakladnik.Data.AppDbContext context)
         {
@@ -30,8 +32,10 @@ namespace Zakladnik.Pages.Zaklady
                     DateTime.Now.Hour,
                     DateTime.Now.Minute,
                     0),
-                Podatek = 12
+                Podatek = 12,
+                Rozliczony = true
             };
+
             return Page();
         }
 
@@ -46,6 +50,8 @@ namespace Zakladnik.Pages.Zaklady
             {
                 return Page();
             }
+
+
 
             _context.Zaklady.Add(Zaklad);
             await _context.SaveChangesAsync();

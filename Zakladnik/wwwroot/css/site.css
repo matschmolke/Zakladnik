@@ -45,3 +45,9 @@ body {
 .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
 }
+
+.badge {
+    font-size: 0.9rem;
+    padding: 0.5em 0.75em;
+    border-radius: 0.4rem;
+}
