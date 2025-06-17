@@ -1,23 +1,23 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
-    const wygranyCheckbox = document.querySelector("#Zaklad_Wygrany");
-    const rozliczonyCheckbox = document.querySelector("#Zaklad_Rozliczony");
+    const isWonCheckbox = document.querySelector("#IsWon");
+    const isSettledCheckbox = document.querySelector("#IsSettled");
 
-    if (!form || !wygranyCheckbox || !rozliczonyCheckbox) return;
+    if (!form || !isWonCheckbox || !isSettledCheckbox) return;
 
-    rozliczonyCheckbox.addEventListener("change", function () {
+    isSettledCheckbox.addEventListener("change", function () {
         if (!this.checked) {
-            wygranyCheckbox.checked = false;
-            wygranyCheckbox.disabled = true;
+            isWonCheckbox.checked = false;
+            isWonCheckbox.disabled = true;
             wygranyLabel.classList.add("disabled-checkbox");
         } else {
-            wygranyCheckbox.disabled = false;
+            isWonCheckbox.disabled = false;
             wygranyLabel.classList.remove("disabled-checkbox");
         }
     });
 
     form.addEventListener("submit", function (e) {
-        if (!rozliczonyCheckbox.checked && wygranyCheckbox.checked) {
+        if (!isSettledCheckbox.checked && isWonCheckbox.checked) {
             e.preventDefault();
             alert("Nie można zaznaczyć zakładu jako wygranego, jeśli nie jest rozliczony.");
         }

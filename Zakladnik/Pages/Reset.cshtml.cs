@@ -15,7 +15,7 @@ namespace Zakladnik.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            _context.Zaklady.RemoveRange(_context.Zaklady);
+            _context.Bets.RemoveRange(_context.Bets);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("/Index");

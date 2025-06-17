@@ -12,7 +12,7 @@ using Zakladnik.Data;
 namespace Zakladnik.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250615185239_InitialCreate")]
+    [Migration("20250617150128_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace Zakladnik.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Zakladnik.Models.Zaklad", b =>
+            modelBuilder.Entity("Zakladnik.Models.Bet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,33 +33,33 @@ namespace Zakladnik.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Bukmacher")
+                    b.Property<string>("Bookmaker")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Data")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Kurs")
+                    b.Property<bool>("IsSettled")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsWon")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("Odds")
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
-                    b.Property<decimal>("Podatek")
+                    b.Property<decimal>("Stake")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("Tax")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("Rozliczony")
-                        .HasColumnType("bit");
-
-                    b.Property<decimal>("Stawka")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<bool>("Wygrany")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Zaklady");
+                    b.ToTable("Bets");
                 });
 #pragma warning restore 612, 618
         }

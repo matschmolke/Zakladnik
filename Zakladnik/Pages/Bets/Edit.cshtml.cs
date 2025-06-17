@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Zakladnik.Data;
 using Zakladnik.Models;
 
-namespace Zakladnik.Pages.Zaklady
+namespace Zakladnik.Pages.Bets
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace Zakladnik.Pages.Zaklady
         }
 
         [BindProperty]
-        public Zaklad Zaklad { get; set; } = default!;
+        public Bet Bet { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,17 +30,15 @@ namespace Zakladnik.Pages.Zaklady
                 return NotFound();
             }
 
-            var zaklad =  await _context.Zaklady.FirstOrDefaultAsync(m => m.Id == id);
-            if (zaklad == null)
+            var bet =  await _context.Bets.FirstOrDefaultAsync(m => m.Id == id);
+            if (bet == null)
             {
                 return NotFound();
             }
-            Zaklad = zaklad;
+            Bet = bet;
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -48,7 +46,7 @@ namespace Zakladnik.Pages.Zaklady
                 return Page();
             }
 
-            _context.Attach(Zaklad).State = EntityState.Modified;
+            _context.Attach(Bet).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +54,7 @@ namespace Zakladnik.Pages.Zaklady
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ZakladExists(Zaklad.Id))
+                if (!BetExists(Bet.Id))
                 {
                     return NotFound();
                 }
@@ -69,9 +67,9 @@ namespace Zakladnik.Pages.Zaklady
             return RedirectToPage("./Index");
         }
 
-        private bool ZakladExists(int id)
+        private bool BetExists(int id)
         {
-            return _context.Zaklady.Any(e => e.Id == id);
+            return _context.Bets.Any(e => e.Id == id);
         }
     }
 }

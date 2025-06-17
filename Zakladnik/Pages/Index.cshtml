@@ -10,19 +10,19 @@
     <div class="col-md-4">
         <div class="card p-3 mb-3 shadow-sm rounded text-center border-primary">
             <h5>🎯 Liczba zakładów</h5>
-            <p class="fs-4">@Model.LiczbaZakladow</p>
+            <p class="fs-4">@Model.NumberOfBets</p>
         </div>
     </div>
     <div class="col-md-4">
         <div class="card p-3 mb-3 shadow-sm rounded text-center border-primary">
             <h5>💸 Łącznie postawiono</h5>
-            <p class="fs-4">@Model.LacznaStawka zł</p>
+            <p class="fs-4">@Model.TotalStake zł</p>
         </div>
     </div>
     <div class="col-md-4">
         <div class="card p-3 mb-3 shadow-sm rounded text-center border-primary">
             <h5>🏆 Łącznie wygrano</h5>
-            <p class="fs-4">@Model.LacznaWygrana zł</p>
+            <p class="fs-4">@Model.TotalWinnings zł</p>
         </div>
     </div>
 </div>
@@ -31,23 +31,23 @@
     <div class="col-md-6">
         <div class="card p-3 mb-3 shadow-sm rounded text-center border-primary">
             <h5>📈 Bilans</h5>
-            <p class="fs-4 @(Model.Bilans >= 0 ? "text-success" : "text-danger")">
-                @Model.Bilans zł
+            <p class="fs-4 @(Model.Balance >= 0 ? "text-success" : "text-danger")">
+                @Model.Balance zł
             </p>
         </div>
     </div>
     <div class="col-md-6">
         <div class="card p-3 mb-3 shadow-sm rounded text-center border-primary">
             <h5>🎯 Skuteczność</h5>
-            <p class="fs-4">@Model.Skutecznosc %</p>
+            <p class="fs-4">@Model.Accuracy %</p>
         </div>
     </div>
 </div>
 
 <div class="alert mt-4 text-center 
-    @(Model.Bilans >= 0 ? "alert-success" : "alert-danger")" role="alert">
+    @(Model.Balance >= 0 ? "alert-success" : "alert-danger")" role="alert">
 
-    @if (Model.Bilans >= 0)
+    @if (Model.Balance >= 0)
     {
         <p><strong>💸 Grasz jak zawodowiec!</strong> Twój bilans jest dodatni.</p>
     }
@@ -58,7 +58,7 @@
 </div>
 
 <div class="mt-4">
-    <a class="btn btn-outline-primary btn-lg" asp-page="/Zaklady/Index">
+    <a class="btn btn-outline-primary btn-lg" asp-page="/Bets/Index">
         ➡️ Przejdź do listy zakładów
     </a>
     <a class="btn btn-outline-danger btn-lg" asp-page="/Reset" >

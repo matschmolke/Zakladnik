@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using Zakladnik.Models;
 
-
 namespace Zakladnik
 {
     public class Program

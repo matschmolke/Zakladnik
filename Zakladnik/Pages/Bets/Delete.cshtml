@@ -1,5 +1,5 @@
 ﻿@page
-@model Zakladnik.Pages.Zaklady.DeleteModel
+@model Zakladnik.Pages.Bets.DeleteModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -12,45 +12,45 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Zaklad.Data)
+            @Html.DisplayNameFor(model => model.Bet.Date)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Zaklad.Data)
+            @Html.DisplayFor(model => model.Bet.Date)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Zaklad.Bukmacher)
+            @Html.DisplayNameFor(model => model.Bet.Bookmaker)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Zaklad.Bukmacher)
+            @Html.DisplayFor(model => model.Bet.Bookmaker)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Zaklad.Stawka)
+            @Html.DisplayNameFor(model => model.Bet.Stake)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Zaklad.Stawka)
+            @Html.DisplayFor(model => model.Bet.Stake)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Zaklad.Kurs)
+            @Html.DisplayNameFor(model => model.Bet.Odds)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Zaklad.Kurs)
+            @Html.DisplayFor(model => model.Bet.Odds)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Zaklad.Wygrany)
+            @Html.DisplayNameFor(model => model.Bet.IsWon)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Zaklad.Wygrany)
+            @Html.DisplayFor(model => model.Bet.IsWon)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Zaklad.Podatek)
+            @Html.DisplayNameFor(model => model.Bet.Tax)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Zaklad.Podatek)
+            @Html.DisplayFor(model => model.Bet.Tax)
         </dd>
     </dl>
     
     <form method="post">
-        <input type="hidden" asp-for="Zaklad.Id" />
+        <input type="hidden" asp-for="Bet.Id" />
         <input type="submit" value="Usuń" class="btn btn-danger" />
         <a class="btn btn-secondary" asp-page="./Index">Powrót do listy zakładow</a>
     </form>

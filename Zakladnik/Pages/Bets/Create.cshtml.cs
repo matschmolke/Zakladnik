@@ -9,42 +9,38 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Zakladnik.Data;
 using Zakladnik.Models;
 
-namespace Zakladnik.Pages.Zaklady
+namespace Zakladnik.Pages.Bets
 {
     public class CreateModel : PageModel
     {
         private readonly Zakladnik.Data.AppDbContext _context;
-        public List<SelectListItem> Bukmacherzy { get; set; }
-
 
         public CreateModel(Zakladnik.Data.AppDbContext context)
         {
             _context = context;
         }
 
+        [BindProperty]
+        public Bet Bet { get; set; } = default!;
+
         public IActionResult OnGet()
         {
-            Zaklad = new Zaklad
+            this.Bet = new Bet
             {
-                Data = new DateTime(
+                Date = new DateTime(
                     DateTime.Now.Year,
                     DateTime.Now.Month,
                     DateTime.Now.Day,
                     DateTime.Now.Hour,
                     DateTime.Now.Minute,
                     0),
-                Podatek = 12,
-                Rozliczony = true
+                Tax = 12,
+                IsSettled = true
             };
 
             return Page();
         }
 
-
-        [BindProperty]
-        public Zaklad Zaklad { get; set; } = default!;
-
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -52,9 +48,7 @@ namespace Zakladnik.Pages.Zaklady
                 return Page();
             }
 
-
-
-            _context.Zaklady.Add(Zaklad);
+            _context.Bets.Add(this.Bet);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

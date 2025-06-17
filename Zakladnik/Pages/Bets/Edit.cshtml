@@ -1,0 +1,66 @@
+﻿@page
+@model Zakladnik.Pages.Bets.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edycja zakładu</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Bet.Id" />
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Bet.Date" class="control-label"></label>
+                <input asp-for="Bet.Date" class="form-control" type="datetime-local" />
+                <span asp-validation-for="Bet.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Bet.Bookmaker" class="control-label"></label>
+                <input asp-for="Bet.Bookmaker" class="form-control" />
+                <span asp-validation-for="Bet.Bookmaker" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Bet.Stake" class="control-label"></label>
+                <input asp-for="Bet.Stake" class="form-control" />
+                <span asp-validation-for="Bet.Stake" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Bet.Odds" class="control-label"></label>
+                <input asp-for="Bet.Odds" class="form-control" />
+                <span asp-validation-for="Bet.Odds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bet.Tax" class="control-label"></label>
+                <input asp-for="Bet.Tax" class="form-control" />
+                <span asp-validation-for="Bet.Tax" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Bet.IsSettled" id="IsSettled" /> @Html.DisplayNameFor(model => model.Bet.IsSettled)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Bet.IsWon" id="IsWon" /> @Html.DisplayNameFor(model => model.Bet.IsWon)
+                </label>
+            </div>
+            <div class="form-group d-flex gap-2 mt-3">
+                <input type="submit" value="Zapisz" class="btn btn-info" />
+                <a class="btn btn-secondary" asp-page="./Index">Powrót do listy zakładow</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/site.js"></script>
+}

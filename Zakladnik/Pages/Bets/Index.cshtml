@@ -1,5 +1,5 @@
 ﻿@page
-@model Zakladnik.Pages.Zaklady.IndexModel
+@model Zakladnik.Pages.Bets.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -20,14 +20,14 @@
 <hr />
 <form method="get" class="row g-2 mb-4">
     <div class="col-md-4">
-        <input name="filtrBukmacher" value="@Model.FiltrBukmacher" class="form-control" placeholder="Szukaj bukmachera..." />
+        <input name="filterBookmaker" value="@Model.FilterBookmaker" class="form-control" placeholder="Szukaj bukmachera..." />
     </div>
     <div class="col-md-4">
-        <select name="filtrStatus" class="form-select">
+        <select name="filterStatus" class="form-select">
             <option value="">-- Wszystkie --</option>
-            <option value="Wygrany" selected="@(Model.FiltrStatus == "Wygrany")">Wygrane</option>
-            <option value="Przegrany" selected="@(Model.FiltrStatus == "Przegrany")">Przegrane</option>
-            <option value="Nierozliczony" selected="@(Model.FiltrStatus == "Nierozliczony")">Nierozliczone</option>
+            <option value="Won" selected="@(Model.FilterStatus == "Won")">Wygrane</option>
+            <option value="Lost" selected="@(Model.FilterStatus == "Lost")">Przegrane</option>
+            <option value="Unsettled" selected="@(Model.FilterStatus == "Unsettled")">Nierozliczone</option>
         </select>
     </div>
     <div class="col-md-4">
@@ -36,30 +36,30 @@
     </div>
 </form>
 
-<div class="alert @(Model.Bilans >= 0 ? "alert-success" : "alert-danger")">
-    <strong>Bilans:</strong> @Model.Bilans.ToString("0.00") zł
+<div class="alert @(Model.Balance >= 0 ? "alert-success" : "alert-danger")">
+    <strong>Bilans:</strong> @Model.Balance.ToString("0.00") zł
 </div>
 
 <table class="table table-striped table-hover table-bordered">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Zaklad[0].Data)
+                @Html.DisplayNameFor(model => model.Bet[0].Date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Zaklad[0].Bukmacher)
+                @Html.DisplayNameFor(model => model.Bet[0].Bookmaker)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Zaklad[0].Stawka)
+                @Html.DisplayNameFor(model => model.Bet[0].Stake)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Zaklad[0].Kurs)
+                @Html.DisplayNameFor(model => model.Bet[0].Odds)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Zaklad[0].Wygrany)
+                @Html.DisplayNameFor(model => model.Bet[0].IsWon)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Zaklad[0].Podatek)
+                @Html.DisplayNameFor(model => model.Bet[0].Tax)
             </th>
             <th>EWK</th>
             <th>Wygrana</th>
@@ -68,26 +68,26 @@
     </thead>
     <tbody>
 
-@foreach (var item in Model.Zaklad) {
+@foreach (var item in Model.Bet) {
         <tr>
             <td>
-                 @item.Data.ToString("dd.MM.yyyy HH:mm")
+                 @item.Date.ToString("dd.MM.yyyy HH:mm")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Bukmacher)
+                @Html.DisplayFor(modelItem => item.Bookmaker)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Stawka)
+                @Html.DisplayFor(modelItem => item.Stake)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Kurs)
+                @Html.DisplayFor(modelItem => item.Odds)
             </td>
             <td>
-                @if (!item.Rozliczony)
+                @if (!item.IsSettled)
                 {
                     <span class="badge bg-secondary">Oczekuje ⏳</span>
                 }
-                else if (item.Wygrany)
+                else if (item.IsWon)
                 {
                     <span class="badge bg-success">Wygrany ✅</span>
                 }
@@ -97,13 +97,13 @@
                 }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Podatek)
+                @Html.DisplayFor(modelItem => item.Tax)
             </td>
             <td>
-                @item.PotencjalnaWygrana
+                @item.PotentialWinnings
             </td>
             <td>
-                @item.FaktycznaWygrana
+                @item.ActualWinnings
             </td>
             <td>
                 <a class="btn btn-sm btn-info" asp-page="./Edit" asp-route-id="@item.Id">Edytuj</a>

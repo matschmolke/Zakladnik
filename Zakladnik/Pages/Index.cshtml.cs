@@ -15,22 +15,22 @@ public class IndexModel : PageModel
         _context = context;
     }
 
-    public int LiczbaZakladow { get; set; }
-    public decimal LacznaStawka { get; set; }
-    public decimal LacznaWygrana { get; set; }
-    public decimal Bilans { get; set; }
-    public double Skutecznosc { get; set; }
+    public int NumberOfBets { get; set; }
+    public decimal TotalStake { get; set; }
+    public decimal TotalWinnings { get; set; }
+    public decimal Balance { get; set; }
+    public double Accuracy { get; set; }
 
     public async Task OnGetAsync()
     {
-        var zaklady = await _context.Zaklady.ToListAsync();
+        var bets = await _context.Bets.ToListAsync();
 
-        LiczbaZakladow = zaklady.Count;
-        LacznaStawka = zaklady.Sum(z => z.Stawka);
-        LacznaWygrana = zaklady.Sum(z => z.FaktycznaWygrana);
-        Bilans = LacznaWygrana - LacznaStawka;
+        NumberOfBets = bets.Count;
+        TotalStake = bets.Sum(z => z.Stake);
+        TotalWinnings = bets.Sum(z => z.ActualWinnings);
+        Balance = TotalWinnings - TotalStake;
 
-        int wygrane = zaklady.Count(z => z.Wygrany);
-        Skutecznosc = LiczbaZakladow > 0 ? Math.Round((double)wygrane / LiczbaZakladow * 100, 2) : 0;
+        int winnings = bets.Count(z => z.IsWon);
+        Accuracy = NumberOfBets > 0 ? Math.Round((double)winnings / NumberOfBets * 100, 2) : 0;
     }
 }

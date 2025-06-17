@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Zakladnik.Data;
 using Zakladnik.Models;
 
-namespace Zakladnik.Pages.Zaklady
+namespace Zakladnik.Pages.Bets
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace Zakladnik.Pages.Zaklady
         }
 
         [BindProperty]
-        public Zaklad Zaklad { get; set; } = default!;
+        public Bet Bet { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,11 +29,11 @@ namespace Zakladnik.Pages.Zaklady
                 return NotFound();
             }
 
-            var zaklad = await _context.Zaklady.FirstOrDefaultAsync(m => m.Id == id);
+            var bet = await _context.Bets.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (zaklad is not null)
+            if (bet is not null)
             {
-                Zaklad = zaklad;
+                this.Bet = bet;
 
                 return Page();
             }
@@ -48,11 +48,11 @@ namespace Zakladnik.Pages.Zaklady
                 return NotFound();
             }
 
-            var zaklad = await _context.Zaklady.FindAsync(id);
-            if (zaklad != null)
+            var bet = await _context.Bets.FindAsync(id);
+            if (bet != null)
             {
-                Zaklad = zaklad;
-                _context.Zaklady.Remove(Zaklad);
+                this.Bet = bet;
+                _context.Bets.Remove(this.Bet);
                 await _context.SaveChangesAsync();
             }
 

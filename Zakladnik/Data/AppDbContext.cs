@@ -5,21 +5,21 @@ namespace Zakladnik.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options)
-            : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
+
         }
 
-        public DbSet<Zaklad> Zaklady { get; set; }
+        public DbSet<Bet> Bets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Zaklad>()
-                .Property(z => z.Stawka)
+            modelBuilder.Entity<Bet>()
+                .Property(z => z.Stake)
                 .HasPrecision(10, 2);
 
-            modelBuilder.Entity<Zaklad>()
-                .Property(z => z.Kurs)
+            modelBuilder.Entity<Bet>()
+                .Property(z => z.Odds)
                 .HasPrecision(10, 2);
         }
     }
