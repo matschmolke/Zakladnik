@@ -8,10 +8,15 @@
 <h1>Lista zakładów</h1>
 
 <hr />
-<p>
-    <a class="btn btn-info" asp-page="Create">Dodaj nowy zakład</a>
-</p>
+<div class="d-flex justify-content-between">
+    <div class="d-inline">
+        <a class="btn btn-info" asp-page="Create">Dodaj nowy zakład</a>
+    </div>
 
+    <form method="post" asp-page-handler="Export">
+        <button type="submit" class="btn btn-outline-primary mb-3">📤 Eksportuj zakłady do CSV</button>
+    </form>
+</div>
 <hr />
 <form method="get" class="row g-2 mb-4">
     <div class="col-md-4">
@@ -56,12 +61,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.Zaklad[0].Podatek)
             </th>
-            <th>Potencjalna wygrana</th>
-            <th>Faktyczna wygrana</th>
+            <th>EWK</th>
+            <th>Wygrana</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
+
 @foreach (var item in Model.Zaklad) {
         <tr>
             <td>
@@ -101,10 +107,9 @@
             </td>
             <td>
                 <a class="btn btn-sm btn-info" asp-page="./Edit" asp-route-id="@item.Id">Edytuj</a>
-                <!-- usunięto link do szczegółów -->
                 <a class="btn btn-sm btn-danger" asp-page="./Delete" asp-route-id="@item.Id">Usuń</a>
             </td>
         </tr>
-}
+    }
     </tbody>
-</table>
+    </table>
