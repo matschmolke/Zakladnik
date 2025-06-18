@@ -18,6 +18,7 @@ namespace Zakladnik.Pages.Bets
         public decimal Balance { get; set; }
         public string? FilterBookmaker { get; set; }
         public string? FilterStatus { get; set; }
+        public double Accuracy { get; set; }
 
         public IndexModel(Zakladnik.Data.AppDbContext context)
         {
@@ -28,6 +29,11 @@ namespace Zakladnik.Pages.Bets
 
         public async Task OnGetAsync(string? filterBookmaker, string? filterStatus)
         {
+            var bets = await _context.Bets.ToListAsync();
+            var numberOfBets = bets.Count;
+            var numberOfWins = bets.Count(b => b.ActualWinnings > 0);
+            this.Accuracy = numberOfBets > 0 ? (double)numberOfWins / numberOfBets * 100 : 0;
+
             this.FilterBookmaker = filterBookmaker;
             this.FilterStatus = filterStatus;
 
@@ -41,11 +47,17 @@ namespace Zakladnik.Pages.Bets
             if (!string.IsNullOrWhiteSpace(FilterStatus))
             {
                 if (this.FilterStatus == "Won")
+                {
                     query = query.Where(z => z.IsSettled && z.IsWon);
+                }
                 else if (this.FilterStatus == "Lost")
+                {
                     query = query.Where(z => z.IsSettled && !z.IsWon);
+                }
                 else if (this.FilterStatus == "Unsettled")
+                {
                     query = query.Where(z => !z.IsSettled);
+                }
             }
 
             this.Bet = await query.ToListAsync();
@@ -82,6 +94,14 @@ namespace Zakladnik.Pages.Bets
             var fileName = $"zakladnik_{DateTime.Now:yyyyMMdd}.csv";
 
             return File(bytes, "text/csv", fileName);
+        }
+
+        //PROGRESS BAR
+        public string GetAccuracyColor()
+        {
+            if (Accuracy >= 60) return "bg-success";
+            if (Accuracy >= 40) return "bg-warning";
+            return "bg-danger";
         }
     }
 }
